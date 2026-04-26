@@ -731,16 +731,11 @@ function actsNext() {
       <div class="divider"></div>
     </div>
 
-    <div id="today-box" style="background:linear-gradient(135deg,#1a1208,#241a0d);border:1px solid rgba(201,168,76,0.4);border-radius:4px;padding:24px 28px;margin-bottom:32px;text-align:center;">
-      <p style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.3em;color:#8a6f2e;margin-bottom:8px;">დღეს</p>
-      <p id="today-date" style="font-family:'Cinzel',serif;font-size:1.2rem;color:#c9a84c;margin-bottom:6px;"></p>
-      <p id="today-date-old" style="font-family:'Cinzel',serif;font-size:0.75rem;color:#8a6f2e;margin-bottom:16px;letter-spacing:0.05em;"></p>
-      <div id="today-feast" style="font-size:1rem;color:#f5edd8;font-style:italic;line-height:1.7;"></div>
-    </div>
-
-    <div id="upcoming-box" style="background:linear-gradient(135deg,#1a1208,#241a0d);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:24px 28px;margin-bottom:32px;">
-      <p style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.3em;color:#8a6f2e;margin-bottom:16px;">მომავალი დღესასწაულები</p>
-      <div id="upcoming-list"></div>
+    <div style="background:linear-gradient(135deg,#1a1208,#241a0d);border:1px solid rgba(201,168,76,0.4);border-radius:4px;padding:32px 28px;margin-bottom:32px;text-align:center;">
+      <p style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.3em;color:#8a6f2e;margin-bottom:12px;">☦ დღეს</p>
+      <p id="today-date" style="font-family:'Cinzel',serif;font-size:1.3rem;color:#c9a84c;margin-bottom:6px;"></p>
+      <p id="today-date-old" style="font-family:'Cinzel',serif;font-size:0.75rem;color:#8a6f2e;margin-bottom:28px;letter-spacing:0.05em;"></p>
+      <a href="https://www.orthodoxy.ge/kalendari.htm" target="_blank" style="display:inline-block;padding:14px 32px;font-family:'Cinzel',serif;font-size:0.8rem;letter-spacing:0.15em;background:linear-gradient(135deg,#8a6f2e,#c9a84c);color:#0d0a07;font-weight:600;border-radius:2px;text-decoration:none;transition:all 0.3s;">საეკლესიო კალენდარი →</a>
     </div>
 
 
@@ -823,35 +818,9 @@ function initCalendar() {
   document.getElementById('today-date').textContent = dayName+", "+d+" "+monthName+" "+today.getFullYear();
   document.getElementById('today-date-old').textContent = "ძველი სტილი: "+oldD+" "+oldM+" "+oldY;
 
-  // Today's feasts
-  const todayFeasts = FEASTS.filter(f=>f.m===m && f.d===d);
-  const todayDiv = document.getElementById('today-feast');
-  if(todayFeasts.length>0) {
-    todayDiv.innerHTML = todayFeasts.map(f=>`<div style="margin-bottom:8px;"><strong style="color:${TYPE_STYLE[f.type].color}">${f.name}</strong></div>`).join('');
-  } else {
-    todayDiv.innerHTML = '<span style="color:#8a6f2e;">დღეს განსაკუთრებული დღესასწაული არ არის</span>';
-  }
 
-  // Upcoming feasts (next 30 days)
-  const upcoming = [];
-  for(let i=1; i<=60; i++) {
-    const next = new Date(today);
-    next.setDate(today.getDate()+i);
-    const nm = next.getMonth()+1;
-    const nd = next.getDate();
-    const found = FEASTS.filter(f=>f.m===nm && f.d===nd);
-    found.forEach(f=>upcoming.push({...f, daysLeft:i, dateStr:nd+" "+GEO_MONTHS[nm-1]}));
-    if(upcoming.length>=5) break;
-  }
 
-  const upDiv = document.getElementById('upcoming-list');
-  upDiv.innerHTML = upcoming.map(f=>`
-    <div style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid rgba(201,168,76,0.1);">
-      <div style="font-family:'Cinzel',serif;font-size:0.75rem;color:#8a6f2e;min-width:80px;">${f.dateStr}</div>
-      <div style="flex:1;font-size:1rem;color:#f5edd8;">${f.name}</div>
-      <div style="font-family:'Cinzel',serif;font-size:0.65rem;color:#8a6f2e;white-space:nowrap;">${f.daysLeft} დღეში</div>
-    </div>
-  `).join('');
+
 
   // Month tabs
   const tabsDiv = document.getElementById('month-tabs');
