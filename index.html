@@ -454,7 +454,19 @@ function showPage(pageId) {
   if (map[pageId]) document.getElementById(map[pageId]).classList.add('active');
   window.scrollTo(0, 0);
   if (pageId === 'quiz-play') initQuiz();
+  // Update URL hash
+  const hashMap = {'home':'','quiz-list':'quiz','_quiz-john':'quiz-john','_quiz-acts':'quiz-acts','quiz-play':'quiz-matthew','stories-list':'stories','story-1':'story-1','news-list':'news','news-1':'news-1','_calendar_internal':'calendar'};
+  const hash = hashMap[pageId] !== undefined ? hashMap[pageId] : pageId;
+  history.replaceState(null, '', hash ? '#'+hash : window.location.pathname);
 }
+
+function handleHash() {
+  const hash = window.location.hash.replace('#','');
+  const hashToPage = {'quiz':'quiz-list','quiz-john':'quiz-john','quiz-acts':'quiz-acts','quiz-matthew':'quiz-play','stories':'stories-list','story-1':'story-1','news':'news-list','news-1':'news-1','calendar':'calendar'};
+  if(hash && hashToPage[hash]) showPage(hashToPage[hash]);
+  else showPage('home');
+}
+window.addEventListener('load', handleHash);
 
 // ---- QUIZ ----
 const questions = [
