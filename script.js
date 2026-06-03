@@ -2,61 +2,49 @@ let localReturnPage = 'prayers';
 let lastScrollPosition = 0; 
 let lastScrollTop = 0; 
 
-function showPage(pageId) {
-    let elements = document.querySelectorAll('.page, section, div[id^="prayer-"], div[id="prayers"], div[id="calendar"], div[id="home"]');
-    elements.forEach(el => {
-        if (el.id === pageId) {
-            el.style.display = 'block';
-        } else if (el.id) {
-            el.style.display = 'none';
-        }
-    });
-
-    let floatingButton = document.getElementById('floating-back-btn');
-    if (floatingButton) {
-        // თუ გვერდის ID იწყება "prayer-"-ით, ესე იგი 100%-ით ლოცვაში ვართ და ვრთავთ ღილაკს!
-        if (pageId.startsWith('prayer-')) {
-            floatingButton.style.display = 'flex';
-            floatingButton.style.opacity = '0'; // თავიდან დამალულია სქროლვამდე
-        } else {
-            // თუ მთავარზე, კალენდარში ან მენიუშია - სრულად ვმალავთ
-            floatingButton.style.display = 'none';
-            floatingButton.style.opacity = '0';
-        }
-    }
-}
-
 function openSagalobeli(fromPageId) {
     localReturnPage = fromPageId; 
     lastScrollPosition = window.scrollY; 
-    showPage('prayer-ghirs-natsv'); 
+    
+    // თუ ფუნქცია სხვა სახელით გაქვს, ბრაუზერი ამას მაინც გაუშვებს
+    if (typeof showPage === "function") showPage('prayer-ghirs-natsv');
+    else if (typeof changePage === "function") changePage('prayer-ghirs-natsv');
 }
 
 function goBackToWhereIWas() {
-    // თუ სხვა ლოცვიდან გადავედით საგალობელზე, დაგვაბრუნოს იქ და ჩამოასქროლოს
     if (localReturnPage && localReturnPage !== 'prayers' && localReturnPage !== 'home') {
-        showPage(localReturnPage);
+        if (typeof showPage === "function") showPage(localReturnPage);
+        else if (typeof changePage === "function") changePage(localReturnPage);
+        
         setTimeout(() => {
             window.scrollTo(0, lastScrollPosition); 
         }, 50);
-        localReturnPage = 'prayers'; // განულება
+        localReturnPage = 'prayers';
     } else {
-        // თუ პირდაპირ მენიუდან შევედით ნებისმიერ ლოცვაში, უკან დაჭერით გავიდეთ ლოცვების სიაში
-        showPage('prayers');
+        if (typeof showPage === "function") showPage('prayers');
+        else if (typeof changePage === "function") changePage('prayers');
     }
 }
 
-// სქროლის კონტროლი
+// სქროლის კონტროლი, რომელიც თავად ხვდება სად გამოჩნდეს
 window.addEventListener('scroll', function() {
     let currentScroll = window.scrollY;
     let floatingButton = document.getElementById('floating-back-btn');
     
-    if (!floatingButton || floatingButton.style.display === 'none') return; 
+    if (!floatingButton) return; 
 
-    if (currentScroll > lastScrollTop) {
+    // თუ მომხმარებელი სულ ზემოთ არის (საწყის პოზიციაზე), ღილაკი დავმალოთ
+    if (currentScroll < 80) {
         floatingButton.style.transform = 'translateY(100px)';
         floatingButton.style.opacity = '0';
-    } else {
+    } 
+    // თუ ქვემოთ სქროლავს - ვმალავთ
+    else if (currentScroll > lastScrollTop) {
+        floatingButton.style.transform = 'translateY(100px)';
+        floatingButton.style.opacity = '0';
+    } 
+    // თუ ზემოთ ამოასქროლებს - ვაჩენთ
+    else {
         floatingButton.style.transform = 'translateY(0)';
         floatingButton.style.opacity = '1';
     }
