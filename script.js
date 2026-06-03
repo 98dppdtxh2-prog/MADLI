@@ -1,10 +1,11 @@
 let localReturnPage = 'prayers';
 
 function openSagalobeli(fromPageId) {
-    localReturnPage = fromPageId; // იმახსოვრებს გვერდს (მაგ. 'page-prayer-evening')
-    showPage('page-prayer-ghirs-natsv'); // ხსნის საგალობლებს შენივე ფუნქციით
+    localReturnPage = fromPageId; 
+    // ვცადოთ page-ს გარეშე, რადგან showPage-ს შეიძლება ასე უნდა
+    showPage('prayer-ghirs-natsv'); 
 }
 
 function goBackToWhereIWas() {
-    showPage(localReturnPage); // აბრუნებს იქ, საიდანაც მოვიდა
+    showPage(localReturnPage); 
 }
