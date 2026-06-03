@@ -2,7 +2,7 @@ let localReturnPage = 'prayers';
 
 function openSagalobeli(fromPageId) {
     localReturnPage = fromPageId; 
-    window.location.hash = 'page-prayer-ghirs-natsv'; 
+    window.location.hash = 'prayer-ghirs-natsv'; 
 }
 
 function goBackToWhereIWas() {
