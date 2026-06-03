@@ -1,50 +1,59 @@
-let localReturnPage = 'prayers';
-let lastScrollPosition = 0; 
-let lastScrollTop = 0; 
+let lastScrollTop = 0;
 
-function openSagalobeli(fromPageId) {
-    localReturnPage = fromPageId; 
-    lastScrollPosition = window.scrollY; 
-    
-    // თუ ფუნქცია სხვა სახელით გაქვს, ბრაუზერი ამას მაინც გაუშვებს
-    if (typeof showPage === "function") showPage('prayer-ghirs-natsv');
-    else if (typeof changePage === "function") changePage('prayer-ghirs-natsv');
-}
+// ეს არის შენი საიტის მთავარი ფუნქცია, რომელიც გვერდებს ცვლის
+function changePage(pageId) {
+    let elements = document.querySelectorAll('.page, section, div[id^="prayer-"], div[id="prayers"], div[id="calendar"], div[id="home"]');
+    elements.forEach(el => {
+        if (el.id === pageId) {
+            el.style.display = 'block';
+        } else if (el.id) {
+            el.style.display = 'none';
+        }
+    });
 
-function goBackToWhereIWas() {
-    if (localReturnPage && localReturnPage !== 'prayers' && localReturnPage !== 'home') {
-        if (typeof showPage === "function") showPage(localReturnPage);
-        else if (typeof changePage === "function") changePage(localReturnPage);
-        
-        setTimeout(() => {
-            window.scrollTo(0, lastScrollPosition); 
-        }, 50);
-        localReturnPage = 'prayers';
-    } else {
-        if (typeof showPage === "function") showPage('prayers');
-        else if (typeof changePage === "function") changePage('prayers');
+    // აი აქ არის მკაცრი კონტროლი:
+    let floatingButton = document.getElementById('floating-back-btn');
+    if (floatingButton) {
+        // თუ ვართ მთავარზე (home), კალენდარში (calendar) ან ლოცვების მენიუში (prayers)
+        if (pageId === 'home' || pageId === 'calendar' || pageId === 'prayers') {
+            floatingButton.setAttribute('data-disabled', 'true'); // ღილაკს ვთიშავთ
+            floatingButton.style.transform = 'translateY(100px)';
+            floatingButton.style.opacity = '0';
+        } else {
+            // მხოლოდ კონკრეტულ ლოცვაში შესვლისას ირთვება მზადყოფნა
+            floatingButton.removeAttribute('data-disabled'); 
+            floatingButton.style.transform = 'translateY(100px)';
+            floatingButton.style.opacity = '0';
+        }
     }
 }
 
-// სქროლის კონტროლი, რომელიც თავად ხვდება სად გამოჩნდეს
-window.addEventListener('scroll', function() {
-    let currentScroll = window.scrollY;
-    let floatingButton = document.getElementById('floating-back-btn');
-    
-    if (!floatingButton) return; 
+// "უკან" ღილაკზე დაჭერისას ყოველთვის ლოცვების მენიუში ('prayers') დაგვაბრუნოს უსაფრთხოდ
+function goBackToWhereIWas() {
+    changePage('prayers');
+}
 
-    // თუ მომხმარებელი სულ ზემოთ არის (საწყის პოზიციაზე), ღილაკი დავმალოთ
-    if (currentScroll < 80) {
+// სქროლის კონტროლი
+window.addEventListener('scroll', function() {
+    let floatingButton = document.getElementById('floating-back-btn');
+    if (!floatingButton) return;
+
+    // თუ ზემოთ კოდმა ღილაკი დაატერორა და გათიშა, სქროლზე საერთოდ არაფერი ქნას
+    if (floatingButton.getAttribute('data-disabled') === 'true') return;
+
+    let currentScroll = window.scrollY;
+
+    if (currentScroll < 90) {
         floatingButton.style.transform = 'translateY(100px)';
         floatingButton.style.opacity = '0';
     } 
-    // თუ ქვემოთ სქროლავს - ვმალავთ
     else if (currentScroll > lastScrollTop) {
+        // ქვემოთ სქროლვისას იმალება
         floatingButton.style.transform = 'translateY(100px)';
         floatingButton.style.opacity = '0';
     } 
-    // თუ ზემოთ ამოასქროლებს - ვაჩენთ
     else {
+        // ზემოთ ასქროლვისას ამოდის
         floatingButton.style.transform = 'translateY(0)';
         floatingButton.style.opacity = '1';
     }
