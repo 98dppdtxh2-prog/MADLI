@@ -1,18 +1,33 @@
 let localReturnPage = 'prayers';
-let lastScrollPosition = 0; // აქ შევინახავთ სკროლის ადგილს
+let lastScrollPosition = 0; 
+let lastScrollTop = 0; 
 
 function openSagalobeli(fromPageId) {
     localReturnPage = fromPageId; 
-    lastScrollPosition = window.scrollY; // ვიმახსოვრებთ ზუსტად სად იდგა მომხმარებელი
-    
+    lastScrollPosition = window.scrollY; 
     showPage('prayer-ghirs-natsv'); 
 }
 
 function goBackToWhereIWas() {
     showPage(localReturnPage); 
-    
-    // პატარა თაიმაუთი გვჭირდება, რომ გვერდმა ჯერ ჩატვირთვა მოასწროს და მერე ჩამოსკროლოს
     setTimeout(() => {
-        window.scrollTo(0, lastScrollPosition); // აბრუნებს მომხმარებელს ზუსტად იმავე ადგილას
+        window.scrollTo(0, lastScrollPosition); 
     }, 50); 
 }
+
+window.addEventListener('scroll', function() {
+    let currentScroll = window.scrollY;
+    let floatingButton = document.getElementById('floating-back-btn');
+    
+    if (!floatingButton) return; 
+
+    if (currentScroll > lastScrollTop) {
+        floatingButton.style.transform = 'translateY(100px)';
+        floatingButton.style.opacity = '0';
+    } else {
+        floatingButton.style.transform = 'translateY(0)';
+        floatingButton.style.opacity = '1';
+    }
+    
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; 
+}, { passive: true });
