@@ -166,3 +166,6 @@
       .nav-links { gap: 16px; }
       .nav-links a { font-size: 0.7rem; }
     }
+.page-force-show { 
+    display: block !important; 
+}
