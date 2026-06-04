@@ -6,7 +6,7 @@
       <h1 class="page-title-sm">ქვიზები</h1>
       <div class="divider"></div>
     </div>
-    <div class="item-card" onclick="showPage('quiz-play')">
+    <div class="item-card" onclick="location.href='quiz-play.html'">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
         <h2 class="item-title" style="margin-bottom:0;">მათეს სახარება</h2>
         <span class="difficulty easy">მარტივი</span>
@@ -16,7 +16,7 @@
         <span>📖 10 კითხვა</span><span>⏱ ~5 წუთი</span><span>✝️ ახალი აღთქმა</span>
       </div>
     </div>
-    <div class="item-card" onclick="showPage('quiz-john')">
+    <div class="item-card" onclick="location.href='quiz-john.html'">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
         <h2 class="item-title" style="margin-bottom:0;">იოანეს სახარება</h2>
         <span class="difficulty medium">საშუალო</span>
@@ -26,7 +26,7 @@
         <span>📖 10 კითხვა</span><span>⏱ ~5 წუთი</span><span>✝️ ახალი აღთქმა</span>
       </div>
     </div>
-    <div class="item-card" onclick="showPage('quiz-acts')">
+    <div class="item-card" onclick="location.href='quiz-acts.html'">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
         <h2 class="item-title" style="margin-bottom:0;">მოციქულთა საქმეები</h2>
         <span class="difficulty hard">რთული</span>
@@ -42,7 +42,7 @@
 <!-- ===== QUIZ PLAY ===== -->
 <div id="page-quiz-play" class="page">
   <div class="quiz-container">
-    <button class="back-btn" onclick="showPage('quiz-list')">← უკან დაბრუნება</button>
+    <button class="back-btn" onclick="location.href='quizzes.html'">← უკან დაბრუნება</button>
     <div id="quiz-intro-matthew" style="text-align:center;">
       <div style="font-size:3rem;margin-bottom:24px;filter:drop-shadow(0 0 20px rgba(201,168,76,0.5));">☦️</div>
       <h2 style="font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold);margin-bottom:24px;">მათეს სახარება</h2>
@@ -84,7 +84,7 @@
         <p class="result-message" id="result-message"></p>
         <div class="result-buttons">
           <button class="btn btn-primary" onclick="restartQuiz()">თავიდან ცდა</button>
-          <button class="btn btn-outline" onclick="showPage('quiz-list')">სხვა ქვიზი</button>
+          <button class="btn btn-outline" onclick="location.href='quizzes.html'">სხვა ქვიზი</button>
         </div>
       </div>
     </div>
