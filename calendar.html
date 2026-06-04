@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>საეკლესიო კალენდარი</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="initCalendar()">
+
+<div class="page-container">
+
+    <a href="index.html" class="back-btn">← უკან დაბრუნება</a>
+
+    <div class="page-header">
+        <p class="section-label">☦ madli.ge</p>
+        <h1 class="page-title-sm">საეკლესიო კალენდარი</h1>
+        <div class="divider"></div>
+    </div>
+
+    <div style="background:linear-gradient(135deg,#1a1208,#241a0d);border:1px solid rgba(201,168,76,0.4);border-radius:4px;padding:32px 28px;margin-bottom:32px;text-align:center;">
+        <p style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.3em;color:#8a6f2e;margin-bottom:12px;">☦ დღეს</p>
+
+        <p id="today-date"></p>
+        <p id="today-date-old"></p>
+
+        <a href="https://www.orthodoxy.ge/kalendari.htm" target="_blank">
+            საეკლესიო კალენდარი →
+        </a>
+    </div>
+
+    <div id="month-tabs"></div>
+    <div id="month-events"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+<div id="page-calendar"></div>
+
+</body>
+</html>
