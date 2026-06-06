@@ -165,4 +165,11 @@
       nav { padding: 14px 20px; }
       .nav-links { gap: 16px; }
       .nav-links a { font-size: 0.7rem; }
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        max-width: 100%;
+        padding: 100px 10px 40px;
     }
+}
