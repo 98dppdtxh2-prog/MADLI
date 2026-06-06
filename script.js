@@ -344,14 +344,3 @@ window.addEventListener("scroll", () => {
 
   lastScrollY = currentScrollY;
 });
-
-const btn = document.getElementById("backToTop");
-
-if (btn) {
-  btn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-}
