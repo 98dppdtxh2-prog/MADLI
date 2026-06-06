@@ -328,19 +328,30 @@ const events = FEASTS
   `;
 }
 
-let lastScrollY = window.scrollY;
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.createElement("button");
+  btn.id = "backToTop";
+  btn.textContent = "↑";
+  document.body.appendChild(btn);
 
-window.addEventListener("scroll", () => {
-  const btn = document.getElementById("backToTop");
-  if (!btn) return;
+  let lastScrollY = window.scrollY;
 
-  const currentScrollY = window.scrollY;
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
 
-  if (currentScrollY < lastScrollY && currentScrollY > 300) {
-    btn.classList.add("show");
-  } else {
-    btn.classList.remove("show");
-  }
+    if (currentScrollY < lastScrollY && currentScrollY > 300) {
+      btn.classList.add("show");
+    } else {
+      btn.classList.remove("show");
+    }
 
-  lastScrollY = currentScrollY;
+    lastScrollY = currentScrollY;
+  });
+
+  btn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
 });
