@@ -328,16 +328,19 @@ const events = FEASTS
   `;
 }
 
+let lastScrollY = window.scrollY;
+
 window.addEventListener("scroll", () => {
   const btn = document.getElementById("backToTop");
   if (!btn) return;
 
-  btn.style.display = window.scrollY > 300 ? "block" : "none";
-});
+  const currentScrollY = window.scrollY;
 
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
+  if (currentScrollY < lastScrollY && currentScrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+
+  lastScrollY = currentScrollY;
+});
