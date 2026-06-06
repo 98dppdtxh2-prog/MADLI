@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div id="header"></div>
 <!-- ===== QUIZ LIST ===== -->
 <div id="page-quiz-list">
   <div class="quiz-container">
@@ -46,5 +48,28 @@
     </div>
   </div>
 </div>
+...
+შენი კონტენტი
+
+<script>
+fetch('header.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('header').innerHTML = data;
+
+    const currentPage = window.location.pathname.split('/').pop();
+
+    const links = document.querySelectorAll('#header a');
+
+    links.forEach(link => {
+      const href = link.getAttribute('href');
+
+      if (href === currentPage) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
