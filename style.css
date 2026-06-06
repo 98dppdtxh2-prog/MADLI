@@ -203,3 +203,42 @@
 #backToTop:hover {
     transform: translateY(-3px);
 }
+
+.quiz-intro-card {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(22,16,10,0.95), rgba(35,25,15,0.95));
+  border: 1px solid rgba(201,168,76,0.35);
+  padding: 60px 40px;
+  border-radius: 6px;
+  box-shadow: 0 0 40px rgba(201,168,76,0.08);
+}
+
+.quiz-cross {
+  font-size: 3rem;
+  color: #c9a84c;
+  margin-bottom: 20px;
+}
+
+.quiz-intro-card h1 {
+  color: #c9a84c;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.quiz-intro-card p {
+  color: #f5edd8;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.quiz-intro-card span {
+  color: #c9a84c;
+}
+
+.quiz-quote {
+  font-style: italic;
+  color: #c7b79c;
+  margin: 30px 0;
+}
