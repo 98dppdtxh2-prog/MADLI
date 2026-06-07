@@ -380,3 +380,9 @@
     margin-left:auto;
     margin-right:auto;
 }
+
+#quiz-john-play-area,
+#quiz-acts-play-area,
+#quiz-play-area {
+  padding-top: 90px;
+}
