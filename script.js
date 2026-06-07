@@ -406,7 +406,6 @@ function torahNext() {
   }
 }
 
-];
 let johnCurrent=0, johnScore=0, johnAnswered=false;
 let actsCurrent=0, actsScore=0, actsAnswered=false;
 
