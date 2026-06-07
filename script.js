@@ -237,13 +237,43 @@ function selectJohnAnswer(index,btn) {
 }
 function johnNext() {
   johnCurrent++;
-  if(johnCurrent>=johnQuestions.length){
-    document.getElementById('quiz-john-play-area').style.display='none';
-    document.getElementById('quiz-john-result-area').style.display='block';
-    document.getElementById('john-result-score').textContent=johnScore;
-    const msgs=['სრულყოფილი! ☦️','შესანიშნავი!','კარგი შედეგი!','გააგრძელე კითხვა.','სცადე თავიდან!'];
-    document.getElementById('john-result-message').textContent=johnScore===10?msgs[0]:johnScore>=8?msgs[1]:johnScore>=6?msgs[2]:johnScore>=4?msgs[3]:msgs[4];
-  } else { loadJohnQuestion(); }
+
+  if (johnCurrent >= johnQuestions.length) {
+    document.getElementById('quiz-john-play-area').style.display = 'none';
+    document.getElementById('quiz-john-result-area').style.display = 'block';
+
+    document.getElementById('john-result-score').textContent = johnScore;
+
+    const title = document.getElementById("result-title");
+    const stars = document.getElementById("result-stars");
+    const msg = document.getElementById("john-result-message");
+
+    if (johnScore === 10) {
+      launchConfetti();
+      title.textContent = "☦ სრულყოფილი შედეგი ☦";
+      stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐";
+      msg.textContent = "შესანიშნავია! ღმერთმა განგამტკიცოს სიბრძნეში და რწმენაში.";
+    } else if (johnScore >= 8) {
+      title.textContent = "🥇 დიდებული შედეგი";
+      stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐☆☆";
+      msg.textContent = "ძალიან კარგი ცოდნა გაქვს! კიდევ ცოტაც და სრულყოფილ შედეგს მიაღწევ.";
+    } else if (johnScore >= 6) {
+      title.textContent = "📖 კარგი შედეგი";
+      stars.textContent = "⭐⭐⭐⭐⭐⭐☆☆☆☆";
+      msg.textContent = "განაგრძე წმინდა წერილის კითხვა და ცოდნა კიდევ უფრო გაგიღრმავდება.";
+    } else if (johnScore >= 4) {
+      title.textContent = "🙏 ნუ შეჩერდები";
+      stars.textContent = "⭐⭐⭐⭐☆☆☆☆☆☆";
+      msg.textContent = "ყოველი კითხვა ახალი ცოდნის დასაწყისია. თავიდან სცადე.";
+    } else {
+      title.textContent = "🌿 ჯერ კიდევ წინ ხარ";
+      stars.textContent = "⭐⭐☆☆☆☆☆☆☆☆";
+      msg.textContent = "არ დანებდე. ღმერთმა მოგმადლოს სიბრძნე და შემეცნება.";
+    }
+
+  } else {
+    loadJohnQuestion();
+  }
 }
 
 function initActs() {
