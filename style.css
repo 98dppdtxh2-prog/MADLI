@@ -361,7 +361,9 @@
     margin:30px 0;
 }
 
-#quiz-play-area{
+#quiz-play-area,
+#quiz-john-play-area,
+#quiz-acts-play-area{
     max-width:700px;
     margin:0 auto;
 }
@@ -369,7 +371,11 @@
 .progress-bar,
 .question-box,
 #options-grid,
-#feedback-box{
+#feedback-box,
+#john-options-grid,
+#john-feedback-box,
+#acts-options-grid,
+#acts-feedback-box{
     max-width:700px;
     margin-left:auto;
     margin-right:auto;
