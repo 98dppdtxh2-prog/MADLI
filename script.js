@@ -577,81 +577,64 @@ const GEO_DAYS = ["კვირა","ორშაბათი","სამშა�
 
 function initCalendar() {
   const today = new Date();
-  const m = today.getMonth()+1;
+  const m = today.getMonth() + 1;
   const d = today.getDate();
   const dayName = GEO_DAYS[today.getDay()];
-  const monthName = GEO_MONTHS[m-1];
+  const monthName = GEO_MONTHS[m - 1];
 
   const oldStyle = new Date(today);
-  oldStyle.setDate(today.getDate()-13);
+  oldStyle.setDate(today.getDate() - 13);
+
   const oldD = oldStyle.getDate();
   const oldM = GEO_MONTHS[oldStyle.getMonth()];
   const oldY = oldStyle.getFullYear();
-  document.getElementById('today-date').textContent = dayName+", "+d+" "+monthName+" "+today.getFullYear();
-  document.getElementById('today-date-old').textContent = "ძველი სტილი: "+oldD+" "+oldM+" "+oldY;
 
-  // Month tabs
-const tabsDiv = document.getElementById('month-tabs');
-tabsDiv.innerHTML = "";
+  const todayDate = document.getElementById('today-date');
+  const todayOld = document.getElementById('today-date-old');
 
-GEO_MONTHS.forEach((mn, i) => {
-  const btn = document.createElement("button");
-
-  btn.textContent = mn;
-  btn.id = "tab-" + (i + 1);
-  btn.onclick = () => showMonth(i + 1);
-
-  btn.style.padding = "8px 14px";
-  btn.style.fontFamily = "'Cinzel', serif";
-  btn.style.fontSize = "0.65rem";
-  btn.style.letterSpacing = "0.1em";
-  btn.style.borderRadius = "2px";
-  btn.style.cursor = "pointer";
-  btn.style.transition = "all 0.3s";
-
-  if (i + 1 === m) {
-    btn.style.background = "linear-gradient(135deg,#8a6f2e,#c9a84c)";
-    btn.style.color = "#0d0a07";
-    btn.style.border = "1px solid transparent";
-  } else {
-    btn.style.background = "transparent";
-    btn.style.color = "#8a6f2e";
-    btn.style.border = "1px solid rgba(201,168,76,0.2)";
+  if (todayDate) {
+    todayDate.textContent = dayName + ", " + d + " " + monthName + " " + today.getFullYear();
   }
 
-  tabsDiv.appendChild(btn);
-});
+  if (todayOld) {
+    todayOld.textContent = "ძველი სტილი: " + oldD + " " + oldM + " " + oldY;
+  }
 
-showMonth(m);}
-}
+  const tabsDiv = document.getElementById('month-tabs');
+  if (!tabsDiv) return;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.createElement("button");
-  btn.id = "backToTop";
-  btn.textContent = "↑";
-  document.body.appendChild(btn);
+  tabsDiv.innerHTML = "";
 
-  let lastScrollY = window.scrollY;
+  GEO_MONTHS.forEach((mn, i) => {
+    const btn = document.createElement("button");
 
-  window.addEventListener("scroll", () => {
-    const currentScrollY = window.scrollY;
+    btn.textContent = mn;
+    btn.id = "tab-" + (i + 1);
+    btn.onclick = () => showMonth(i + 1);
 
-    if (currentScrollY < lastScrollY && currentScrollY > 300) {
-      btn.classList.add("show");
+    btn.style.padding = "8px 14px";
+    btn.style.fontFamily = "'Cinzel', serif";
+    btn.style.fontSize = "0.65rem";
+    btn.style.letterSpacing = "0.1em";
+    btn.style.borderRadius = "2px";
+    btn.style.cursor = "pointer";
+    btn.style.transition = "all 0.3s";
+
+    if (i + 1 === m) {
+      btn.style.background = "linear-gradient(135deg,#8a6f2e,#c9a84c)";
+      btn.style.color = "#0d0a07";
+      btn.style.border = "1px solid transparent";
     } else {
-      btn.classList.remove("show");
+      btn.style.background = "transparent";
+      btn.style.color = "#8a6f2e";
+      btn.style.border = "1px solid rgba(201,168,76,0.2)";
     }
 
-    lastScrollY = currentScrollY;
+    tabsDiv.appendChild(btn);
   });
 
-  btn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-});
+  showMonth(m);
+}
 
 function launchConfetti() {
 
