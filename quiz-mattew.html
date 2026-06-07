@@ -47,14 +47,24 @@
     </button>
   </div>
 
-  <div id="quiz-result-area" style="display:none;">
-    <h2>შედეგი</h2>
-    <div id="result-score">0</div>
-    <p>სწორი პასუხი 10-დან</p>
-    <p id="result-message"></p>
+<div id="quiz-result-area" style="display:none;">
+  <div class="quiz-result-card">
+    <div class="quiz-ornament">❦ ☦ ❦</div>
 
-    <button class="btn btn-primary" onclick="restartQuiz()">თავიდან ცდა</button>
-    <button class="btn btn-outline" onclick="location.href='quizzes.html'">სხვა ქვიზი</button>
+    <h2>ქვიზის შედეგი</h2>
+
+    <div class="result-score-big">
+      <span id="result-score">0</span>/10
+    </div>
+
+    <p class="result-label">სწორი პასუხი</p>
+
+    <p id="result-message" class="result-message"></p>
+
+    <div class="result-actions">
+      <button class="btn btn-primary" onclick="restartQuiz()">თავიდან ცდა</button>
+      <button class="btn btn-outline" onclick="location.href='quizzes.html'">სხვა ქვიზი</button>
+    </div>
   </div>
 </div>
 
