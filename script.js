@@ -45,7 +45,12 @@ function nextQuestion() {
 }
 
 function restartQuiz() {
-  showPage('quiz-list');
+  document.getElementById('quiz-result-area').style.display = 'none';
+  document.getElementById('quiz-play-area').style.display = 'none';
+  document.getElementById('quiz-intro-matthew').style.display = 'block';
+
+  current = 0;
+  score = 0;
 }
 
 // ---- QUIZ ----
