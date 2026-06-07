@@ -286,7 +286,125 @@ answer:1,
 feedback:"სწორია! მეორე რჯული განსაკუთრებულად უსვამს ხაზს ღმერთის სიყვარულსა და მისი მცნებების დაცვას (მეორე რჯული 6:4-9; 30:15-20)."
 }
 ];
-```
+let torahCurrent = 0;
+let torahScore = 0;
+let torahAnswered = false;
+
+function startTorah() {
+  torahCurrent = 0;
+  torahScore = 0;
+
+  document.getElementById('quiz-intro-torah').style.display = 'none';
+  document.getElementById('quiz-torah-result-area').style.display = 'none';
+  document.getElementById('quiz-torah-play-area').style.display = 'block';
+
+  loadTorahQuestion();
+}
+
+function loadTorahQuestion() {
+  torahAnswered = false;
+
+  const q = torahQuestions[torahCurrent];
+
+  document.getElementById('torah-question-text').textContent = q.q;
+  document.getElementById('torah-progress-text').textContent =
+    'კითხვა ' + (torahCurrent + 1) + ' / ' + torahQuestions.length;
+
+  document.getElementById('torah-progress-fill').style.width =
+    (((torahCurrent + 1) / torahQuestions.length) * 100) + '%';
+
+  document.getElementById('torah-next-btn').style.display = 'none';
+  document.getElementById('torah-feedback-box').style.display = 'none';
+  document.getElementById('torah-feedback-box').className = 'feedback-box';
+
+  const grid = document.getElementById('torah-options-grid');
+  grid.innerHTML = '';
+
+  const letters = ['ა', 'ბ', 'გ', 'დ'];
+
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = '<span class="option-letter">' + letters[i] + '</span>' + opt;
+    btn.onclick = () => selectTorahAnswer(i, btn);
+    grid.appendChild(btn);
+  });
+}
+
+function selectTorahAnswer(index, btn) {
+  if (torahAnswered) return;
+
+  torahAnswered = true;
+
+  const q = torahQuestions[torahCurrent];
+  const allBtns = document.querySelectorAll('#torah-options-grid .option-btn');
+
+  allBtns.forEach(b => b.disabled = true);
+
+  const fb = document.getElementById('torah-feedback-box');
+
+  if (index === q.answer) {
+    btn.classList.add('correct');
+    torahScore++;
+    fb.className = 'feedback-box correct';
+    fb.textContent = '✓ ' + q.feedback;
+  } else {
+    btn.classList.add('wrong');
+    allBtns[q.answer].classList.add('correct');
+    fb.className = 'feedback-box wrong';
+    fb.innerHTML =
+      '<strong>✗ სწორი პასუხია: ' + q.options[q.answer] + '</strong><br><br>' +
+      q.feedback.replace('სწორია! ', '');
+  }
+
+  fb.style.display = 'block';
+
+  const nb = document.getElementById('torah-next-btn');
+  nb.style.display = 'inline-block';
+  nb.textContent =
+    torahCurrent === torahQuestions.length - 1 ? 'შედეგის ნახვა →' : 'შემდეგი კითხვა →';
+}
+
+function torahNext() {
+  torahCurrent++;
+
+  if (torahCurrent >= torahQuestions.length) {
+    document.getElementById('quiz-torah-play-area').style.display = 'none';
+    document.getElementById('quiz-torah-result-area').style.display = 'block';
+
+    document.getElementById('torah-result-score').textContent = torahScore;
+
+    const title = document.getElementById("result-title");
+    const stars = document.getElementById("result-stars");
+    const msg = document.getElementById("torah-result-message");
+
+    if (torahScore === 15) {
+      launchConfetti();
+      title.textContent = "☦ სრულყოფილი შედეგი ☦";
+      stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐";
+      msg.textContent = "შესანიშნავია! თორის შესახებ ცოდნა ძალიან ძლიერად გაქვს.";
+    } else if (torahScore >= 12) {
+      title.textContent = "🥇 დიდებული შედეგი";
+      stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐☆☆";
+      msg.textContent = "ძალიან კარგი შედეგია! თორის ძირითადი თემები კარგად იცი.";
+    } else if (torahScore >= 9) {
+      title.textContent = "📖 კარგი შედეგი";
+      stars.textContent = "⭐⭐⭐⭐⭐⭐☆☆☆☆";
+      msg.textContent = "კარგი შედეგია. განაგრძე მოსეს ხუთწიგნეულის კითხვა.";
+    } else if (torahScore >= 6) {
+      title.textContent = "🙏 ნუ შეჩერდები";
+      stars.textContent = "⭐⭐⭐⭐☆☆☆☆☆☆";
+      msg.textContent = "კარგი დასაწყისია. თავიდან სცადე და ცოდნას გაიღრმავებ.";
+    } else {
+      title.textContent = "🌿 ჯერ კიდევ წინ ხარ";
+      stars.textContent = "⭐⭐☆☆☆☆☆☆☆☆";
+      msg.textContent = "არ დანებდე. თორა დიდი და ღრმა მასალაა.";
+    }
+
+  } else {
+    loadTorahQuestion();
+  }
+}
 
 ];
 let johnCurrent=0, johnScore=0, johnAnswered=false;
