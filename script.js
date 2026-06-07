@@ -623,7 +623,6 @@ GEO_MONTHS.forEach((mn, i) => {
 });
 
 showMonth(m);}
-  `;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
