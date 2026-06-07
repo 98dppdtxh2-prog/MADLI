@@ -318,13 +318,43 @@ function selectActsAnswer(index,btn) {
 }
 function actsNext() {
   actsCurrent++;
-  if(actsCurrent>=actsQuestions.length){
-    document.getElementById('quiz-acts-play-area').style.display='none';
-    document.getElementById('quiz-acts-result-area').style.display='block';
-    document.getElementById('acts-result-score').textContent=actsScore;
-    const msgs=['სრულყოფილი! ☦️','შესანიშნავი!','კარგი შედეგი!','გააგრძელე კითხვა.','სცადე თავიდან!'];
-    document.getElementById('acts-result-message').textContent=actsScore===10?msgs[0]:actsScore>=8?msgs[1]:actsScore>=6?msgs[2]:actsScore>=4?msgs[3]:msgs[4];
-  } else { loadActsQuestion(); }
+
+  if (actsCurrent >= actsQuestions.length) {
+    document.getElementById('quiz-acts-play-area').style.display = 'none';
+    document.getElementById('quiz-acts-result-area').style.display = 'block';
+
+    document.getElementById('acts-result-score').textContent = actsScore;
+
+    const title = document.getElementById("result-title");
+    const stars = document.getElementById("result-stars");
+    const msg = document.getElementById("acts-result-message");
+
+    if (actsScore === 10) {
+      launchConfetti();
+      title.textContent = "☦ სრულყოფილი შედეგი ☦";
+      stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐";
+      msg.textContent = "შესანიშნავია! ღმერთმა განგამტკიცოს სიბრძნეში და რწმენაში.";
+    } else if (actsScore >= 8) {
+      title.textContent = "🥇 დიდებული შედეგი";
+      stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐☆☆";
+      msg.textContent = "ძალიან კარგი ცოდნა გაქვს! კიდევ ცოტაც და სრულყოფილ შედეგს მიაღწევ.";
+    } else if (actsScore >= 6) {
+      title.textContent = "📖 კარგი შედეგი";
+      stars.textContent = "⭐⭐⭐⭐⭐⭐☆☆☆☆";
+      msg.textContent = "განაგრძე წმინდა წერილის კითხვა და ცოდნა კიდევ უფრო გაგიღრმავდება.";
+    } else if (actsScore >= 4) {
+      title.textContent = "🙏 ნუ შეჩერდები";
+      stars.textContent = "⭐⭐⭐⭐☆☆☆☆☆☆";
+      msg.textContent = "ყოველი კითხვა ახალი ცოდნის დასაწყისია. თავიდან სცადე.";
+    } else {
+      title.textContent = "🌿 ჯერ კიდევ წინ ხარ";
+      stars.textContent = "⭐⭐☆☆☆☆☆☆☆☆";
+      msg.textContent = "არ დანებდე. ღმერთმა მოგმადლოს სიბრძნე და შემეცნება.";
+    }
+
+  } else {
+    loadActsQuestion();
+  }
 }
 // ===== CALENDAR =====
 const GEO_MONTHS = ["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი"];
