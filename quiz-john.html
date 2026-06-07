@@ -7,10 +7,74 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button class="back-btn" onclick="location.href='quizzes.html'">← უკან დაბრუნება</button>
+<div id="quiz-intro-john" class="quiz-intro-card">
+  <div class="quiz-ornament">❦ ☦ ❦</div>
 
-<h1>იოანეს სახარების ქვიზი</h1>
+  <h1>იოანეს სახარების ქვიზი</h1>
 
-<button onclick="location.href='quizzes.html'">← უკან დაბრუნება</button>
+  <div class="quiz-line"></div>
+
+  <div class="quiz-info">
+    <p>📖 10 კითხვა</p>
+    <p>⏱️ სავარაუდო დრო: 5 წუთი</p>
+    <p>⭐ სირთულე: მარტივი</p>
+  </div>
+
+  <p class="quiz-desc">
+    გამოსცადე შენი ცოდნა წმინდა იოანეს სახარების შესახებ.
+  </p>
+
+  <button class="btn btn-primary" onclick="startJohn()">☦ ქვიზის დაწყება</button>
+</div>
+  <div id="quiz-play-area" style="display:none;">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <p id="progress-text"></p>
+
+    <div class="question-box">
+      <p id="question-text"></p>
+    </div>
+
+    <div id="options-grid"></div>
+
+    <div id="feedback-box"></div>
+
+    <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" style="display:none;">
+      შემდეგი კითხვა →
+    </button>
+  </div>
+
+<div id="quiz-result-area" style="display:none;">
+
+<div class="quiz-result-card">
+
+<div class="quiz-cross">☦</div>
+
+<h2 id="result-title"></h2>
+
+<div class="result-score-big">
+<span id="result-score"></span>/10
+</div>
+
+<div id="result-stars" class="result-stars"></div>
+
+<p id="result-message" class="result-message"></p>
+
+<button class="btn btn-primary" onclick="startMatthew()">
+თავიდან ცდა
+</button>
+
+<button class="btn btn-outline" onclick="location.href='quizzes.html'">
+სხვა ქვიზი
+</button>
+
+</div>
+
+</div>
+
 
 <script src="script.js"></script>
 </body>
