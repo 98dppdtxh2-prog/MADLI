@@ -148,7 +148,6 @@ function showResult() {
     title.textContent = "☦ სრულყოფილი შედეგი ☦";
     msg.textContent = "შესანიშნავია! ღმერთმა განგამტკიცოს სიბრძნეში და რწმენაში.";
     stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐";
-    msg.textContent = "შესანიშნავია! ღმერთმა განგამტკიცოს სიბრძნეში და რწმენაში.";
   } else if (score >= 8) {
     title.textContent = "🥇 დიდებული შედეგი";
     stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐☆☆";
