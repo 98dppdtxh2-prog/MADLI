@@ -318,3 +318,20 @@
   gap: 16px;
   flex-wrap: wrap;
 }
+
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 14px;
+    background: gold;
+    top: -20px;
+    z-index: 99999;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
