@@ -652,29 +652,61 @@ function showMonth(m) {
     }
   }
 
+  const div = document.getElementById('month-events');
+  if (!div) return;
+
   const events = FEASTS
     .filter(f => f.m == m)
     .sort((a, b) => a.d - b.d);
 
-  const div = document.getElementById('month-events');
-  if (!div) return;
+  div.innerHTML = "";
 
   if (events.length === 0) {
-    div.innerHTML = '<p style="color:#8a6f2e;font-style:italic;text-align:center;padding:24px;">ამ თვეში ჩანაწერი არ არის</p>';
+    const p = document.createElement("p");
+    p.textContent = "ამ თვეში ჩანაწერი არ არის";
+    p.style.color = "#8a6f2e";
+    p.style.fontStyle = "italic";
+    p.style.textAlign = "center";
+    p.style.padding = "24px";
+    div.appendChild(p);
     return;
   }
 
-  div.innerHTML = `
-    <p style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.3em;color:#8a6f2e;margin-bottom:16px;">${GEO_MONTHS[m-1].toUpperCase()}</p>
-    ${events.map(f => `
-      <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(201,168,76,0.1);">
-        <div style="font-family:'Cinzel',serif;font-size:1rem;color:#c9a84c;min-width:36px;text-align:center;">${f.d}</div>
-        <div style="font-size:1rem;color:#f5edd8;line-height:1.5;">
-          <span style="color:${TYPE_STYLE[f.type].color}">${f.name}</span>
-        </div>
-      </div>
-    `).join('')}
-  `;
+  const title = document.createElement("p");
+  title.textContent = GEO_MONTHS[m - 1].toUpperCase();
+  title.style.fontFamily = "'Cinzel', serif";
+  title.style.fontSize = "0.7rem";
+  title.style.letterSpacing = "0.3em";
+  title.style.color = "#8a6f2e";
+  title.style.marginBottom = "16px";
+  div.appendChild(title);
+
+  events.forEach(f => {
+    const row = document.createElement("div");
+    row.style.display = "flex";
+    row.style.alignItems = "center";
+    row.style.gap = "16px";
+    row.style.padding = "14px 0";
+    row.style.borderBottom = "1px solid rgba(201,168,76,0.1)";
+
+    const day = document.createElement("div");
+    day.textContent = f.d;
+    day.style.fontFamily = "'Cinzel', serif";
+    day.style.fontSize = "1rem";
+    day.style.color = "#c9a84c";
+    day.style.minWidth = "36px";
+    day.style.textAlign = "center";
+
+    const name = document.createElement("div");
+    name.textContent = f.name;
+    name.style.fontSize = "1rem";
+    name.style.color = "#f5edd8";
+    name.style.lineHeight = "1.5";
+
+    row.appendChild(day);
+    row.appendChild(name);
+    div.appendChild(row);
+  });
 }
 
 function launchConfetti() {
