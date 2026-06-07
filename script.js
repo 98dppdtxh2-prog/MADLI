@@ -144,8 +144,9 @@ function showResult() {
   const stars = document.getElementById("result-stars");
   const msg = document.getElementById("result-message");
 
-  if (score === 10) {
+ if (score === 10) {
     title.textContent = "☦ სრულყოფილი შედეგი ☦";
+    msg.textContent = "შესანიშნავია! ღმერთმა განგამტკიცოს სიბრძნეში და რწმენაში.";
     stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐";
     msg.textContent = "შესანიშნავია! ღმერთმა განგამტკიცოს სიბრძნეში და რწმენაში.";
   } else if (score >= 8) {
