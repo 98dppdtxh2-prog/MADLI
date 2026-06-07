@@ -591,39 +591,38 @@ function initCalendar() {
   document.getElementById('today-date-old').textContent = "ძველი სტილი: "+oldD+" "+oldM+" "+oldY;
 
   // Month tabs
-  const tabsDiv = document.getElementById('month-tabs');
-  tabsDiv.innerHTML = GEO_MONTHS.map((mn,i)=>`
-    <button onclick="showMonth(${i+1})" id="tab-${i+1}" style="padding:8px 14px;font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.1em;border-radius:2px;cursor:pointer;transition:all 0.3s;background:${i+1===m?'linear-gradient(135deg,#8a6f2e,#c9a84c)':'transparent'};color:${i+1===m?'#0d0a07':'#8a6f2e'};border:1px solid ${i+1===m?'transparent':'rgba(201,168,76,0.2)'};">${mn}</button>
-  `).join('');
+const tabsDiv = document.getElementById('month-tabs');
+tabsDiv.innerHTML = "";
 
-  showMonth(m);
-}
+GEO_MONTHS.forEach((mn, i) => {
+  const btn = document.createElement("button");
 
-function showMonth(m) {
-  // Update tab styles
-  for(let i=1;i<=12;i++){
-    const tab = document.getElementById('tab-'+i);
-    if(!tab) continue;
-    if(i===m){tab.style.background='linear-gradient(135deg,#8a6f2e,#c9a84c)';tab.style.color='#0d0a07';tab.style.borderColor='transparent';}
-    else{tab.style.background='transparent';tab.style.color='#8a6f2e';tab.style.borderColor='rgba(201,168,76,0.2)';}
+  btn.textContent = mn;
+  btn.id = "tab-" + (i + 1);
+  btn.onclick = () => showMonth(i + 1);
+
+  btn.style.padding = "8px 14px";
+  btn.style.fontFamily = "'Cinzel', serif";
+  btn.style.fontSize = "0.65rem";
+  btn.style.letterSpacing = "0.1em";
+  btn.style.borderRadius = "2px";
+  btn.style.cursor = "pointer";
+  btn.style.transition = "all 0.3s";
+
+  if (i + 1 === m) {
+    btn.style.background = "linear-gradient(135deg,#8a6f2e,#c9a84c)";
+    btn.style.color = "#0d0a07";
+    btn.style.border = "1px solid transparent";
+  } else {
+    btn.style.background = "transparent";
+    btn.style.color = "#8a6f2e";
+    btn.style.border = "1px solid rgba(201,168,76,0.2)";
   }
 
-const events = FEASTS
-  .filter(f => f.m == m)
-  .sort((a, b) => a.d - b.d);
-  const div = document.getElementById('month-events');
-  if(events.length===0){
-    div.innerHTML='<p style="color:#8a6f2e;font-style:italic;text-align:center;padding:24px;">ამ თვეში ჩანაწერი არ არის</p>';
-    return;
-  }
-  div.innerHTML = `
-    <p style="font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.3em;color:#8a6f2e;margin-bottom:16px;">${GEO_MONTHS[m-1].toUpperCase()}</p>
-    ${events.map(f=>`
-      <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(201,168,76,0.1);">
-        <div style="font-family:'Cinzel',serif;font-size:1rem;color:#c9a84c;min-width:36px;text-align:center;">${f.d}</div>
-        <div style="font-size:1rem;color:#f5edd8;line-height:1.5;"><span style="color:${TYPE_STYLE[f.type].color}">${f.name}</span></div>
-      </div>
-    `).join('')}
+  tabsDiv.appendChild(btn);
+});
+
+showMonth(m);}
   `;
 }
 
