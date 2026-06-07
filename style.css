@@ -276,3 +276,45 @@
     font-size: 1.8rem;
   }
 }
+
+.quiz-result-card {
+  max-width: 680px;
+  margin: 40px auto;
+  padding: 55px 40px;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1208, #2a1b0d);
+  border: 2px solid rgba(201,168,76,0.6);
+  border-radius: 14px;
+  box-shadow: 0 0 35px rgba(201,168,76,0.18);
+}
+
+.quiz-result-card h2 {
+  color: #c9a84c;
+  font-size: 2.2rem;
+}
+
+.result-score-big {
+  font-size: 4rem;
+  color: #c9a84c;
+  margin: 25px 0 5px;
+  font-family: 'Cinzel', serif;
+}
+
+.result-label {
+  color: #f5edd8;
+  letter-spacing: 0.12em;
+}
+
+.result-message {
+  color: #d8c7a3;
+  font-style: italic;
+  margin: 30px 0;
+  font-size: 1.1rem;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
