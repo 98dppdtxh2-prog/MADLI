@@ -3,14 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>მოციქულთა საქმეები</title>
+    <title>საქმე მოციქულთა</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="header"></div>
+    
+    <button class="back-btn" onclick="location.href='quizzes.html'">← უკან დაბრუნება</button>
+<div id="quiz-intro-acts" class="quiz-intro-card">
+  <div class="quiz-ornament">❦ ☦ ❦</div>
 
-<h1>მოციქულთა საქმეების ქვიზი</h1>
+  <h1>"საქმე მოციქულთა"-ს ქვიზი</h1>
 
-<button onclick="location.href='quizzes.html'">← უკან დაბრუნება</button>
+  <div class="quiz-line"></div>
+
+  <div class="quiz-info">
+    <p>📖 10 კითხვა</p>
+    <p>⏱️ სავარაუდო დრო: 5 წუთი</p>
+    <p>⭐ სირთულე: რთული</p>
+  </div>
+
+  <p class="quiz-desc">
+    გამოსცადე შენი ცოდნა მოციქულთა საქმეების შესახებ.
+  </p>
+
+  <button class="btn btn-primary" onclick="startActs()">☦ ქვიზის დაწყება</button>
+</div>
+  <div id="quiz-acts-play-area" style="display:none;">
+    <div class="progress-bar">
+      <div class="progress-fill" id="acts-progress-fill"></div>
+    </div>
+
+    <p id="acts-progress-text"></p>
+
+    <div class="question-box">
+      <p id="acts-question-text"></p>
+    </div>
+
+    <div id="acts-options-grid"></div>
+
+    <div id="acts-feedback-box"></div>
+
+    <button class="btn btn-primary" id="acts-next-btn" onclick="actsNext()" style="display:none;">
+      შემდეგი კითხვა →
+    </button>
+  </div>
+
+<div id="quiz-acts-result-area" style="display:none;">
+
+<div class="quiz-result-card">
+
+<div class="quiz-cross">☦</div>
+
+<h2 id="result-title"></h2>
+
+<div class="result-score-big">
+<span id="acts-result-score"></span>/10
+</div>
+
+<div id="result-stars" class="result-stars"></div>
+
+<p id="acts-result-message" class="result-message"></p>
+
+<button class="btn btn-primary" onclick="startacts()">
+თავიდან ცდა
+</button>
+
+<button class="btn btn-outline" onclick="location.href='quizzes.html'">
+სხვა ქვიზი
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+fetch('header.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('header').innerHTML = data;
+  });
+</script>
 
 <script src="script.js"></script>
 </body>
