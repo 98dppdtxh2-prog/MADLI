@@ -361,7 +361,7 @@
     margin:30px 0;
 }
 
-#quiz-play-area,
+,
 #quiz-john-play-area,
 #quiz-acts-play-area{
     max-width:700px;
@@ -375,14 +375,19 @@
 #john-options-grid,
 #john-feedback-box,
 #acts-options-grid,
-#acts-feedback-box{
+#acts-feedback-box,
+#torah-options-grid,
+#torah-feedback-box {
     max-width:700px;
     margin-left:auto;
     margin-right:auto;
 }
 
+#quiz-play-area,
 #quiz-john-play-area,
 #quiz-acts-play-area,
-#quiz-play-area {
-  padding-top: 90px;
+#quiz-torah-play-area {
+    max-width:700px;
+    margin:0 auto;
+    padding-top:120px;
 }
