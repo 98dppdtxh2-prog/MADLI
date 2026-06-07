@@ -145,6 +145,7 @@ function showResult() {
   const msg = document.getElementById("result-message");
 
  if (score === 10) {
+   launchConfetti();
     title.textContent = "☦ სრულყოფილი შედეგი ☦";
     msg.textContent = "შესანიშნავია! ღმერთმა განგამტკიცოს სიბრძნეში და რწმენაში.";
     stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐";
