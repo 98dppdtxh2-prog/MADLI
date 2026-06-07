@@ -405,4 +405,32 @@ document.addEventListener("DOMContentLoaded", () => {
     color:#f5edd8;
     margin:30px 0;
 }
-```
+
+function launchConfetti() {
+
+    for(let i=0;i<120;i++){
+
+        const piece=document.createElement("div");
+
+        piece.className="confetti";
+
+        piece.style.left=Math.random()*100+"vw";
+
+        piece.style.animationDelay=Math.random()*2+"s";
+
+        piece.style.background=[
+            "#c9a84c",
+            "#f5edd8",
+            "#b8860b",
+            "#ffd700"
+        ][Math.floor(Math.random()*4)];
+
+        document.body.appendChild(piece);
+
+        setTimeout(()=>{
+            piece.remove();
+        },5000);
+
+    }
+
+}
