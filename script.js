@@ -132,43 +132,34 @@ function nextQuestion() {
 function showResult() {
   document.getElementById('quiz-play-area').style.display = 'none';
   document.getElementById('quiz-result-area').style.display = 'block';
+
   document.getElementById('result-score').textContent = score;
-  ```js
-const title = document.getElementById("result-title");
-const stars = document.getElementById("result-stars");
-const msg = document.getElementById("result-message");
 
-if(score==10){
-    title.textContent="☦ სრულყოფილი შედეგი ☦";
-    stars.textContent="⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐";
-    msg.textContent="შესანიშნავია! ღმერთმა განგამტკიცოს სიბრძნეში და რწმენაში.";
-}
-else if(score>=8){
-    title.textContent="🥇 დიდებული შედეგი";
-    stars.textContent="⭐⭐⭐⭐⭐⭐⭐⭐☆☆";
-    msg.textContent="ძალიან კარგი ცოდნა გაქვს! კიდევ ცოტაც და სრულყოფილ შედეგს მიაღწევ.";
-}
-else if(score>=6){
-    title.textContent="📖 კარგი შედეგი";
-    stars.textContent="⭐⭐⭐⭐⭐⭐☆☆☆☆";
-    msg.textContent="განაგრძე წმინდა წერილის კითხვა და ცოდნა კიდევ უფრო გაგიღრმავდება.";
-}
-else if(score>=4){
-    title.textContent="🙏 ნუ შეჩერდები";
-    stars.textContent="⭐⭐⭐⭐☆☆☆☆☆☆";
-    msg.textContent="ყოველი კითხვა ახალი ცოდნის დასაწყისია. თავიდან სცადე.";
-}
-else{
-    title.textContent="🌿 ჯერ კიდევ წინ ხარ";
-    stars.textContent="⭐⭐☆☆☆☆☆☆☆☆";
-    msg.textContent="არ დანებდე. ღმერთმა მოგმადლოს სიბრძნე და შემეცნება.";
-}
-```
+  const title = document.getElementById("result-title");
+  const stars = document.getElementById("result-stars");
+  const msg = document.getElementById("result-message");
 
-function restartQuiz() {
-  document.getElementById('quiz-result-area').style.display='none';
-  document.getElementById('quiz-intro-matthew').style.display='block';
-  document.getElementById('quiz-play-area').style.display='none';
+  if (score === 10) {
+    title.textContent = "☦ სრულყოფილი შედეგი ☦";
+    stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐";
+    msg.textContent = "შესანიშნავია! ღმერთმა განგამტკიცოს სიბრძნეში და რწმენაში.";
+  } else if (score >= 8) {
+    title.textContent = "🥇 დიდებული შედეგი";
+    stars.textContent = "⭐⭐⭐⭐⭐⭐⭐⭐☆☆";
+    msg.textContent = "ძალიან კარგი ცოდნა გაქვს! კიდევ ცოტაც და სრულყოფილ შედეგს მიაღწევ.";
+  } else if (score >= 6) {
+    title.textContent = "📖 კარგი შედეგი";
+    stars.textContent = "⭐⭐⭐⭐⭐⭐☆☆☆☆";
+    msg.textContent = "განაგრძე წმინდა წერილის კითხვა და ცოდნა კიდევ უფრო გაგიღრმავდება.";
+  } else if (score >= 4) {
+    title.textContent = "🙏 ნუ შეჩერდები";
+    stars.textContent = "⭐⭐⭐⭐☆☆☆☆☆☆";
+    msg.textContent = "ყოველი კითხვა ახალი ცოდნის დასაწყისია. თავიდან სცადე.";
+  } else {
+    title.textContent = "🌿 ჯერ კიდევ წინ ხარ";
+    stars.textContent = "⭐⭐☆☆☆☆☆☆☆☆";
+    msg.textContent = "არ დანებდე. ღმერთმა მოგმადლოს სიბრძნე და შემეცნება.";
+  }
 }
 
 const johnQuestions = [
