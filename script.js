@@ -383,3 +383,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+```css
+.result-stars{
+    font-size:30px;
+    margin:20px 0;
+    letter-spacing:4px;
+}
+
+.result-score-big{
+    font-family:'Cinzel',serif;
+    font-size:70px;
+    color:#c9a84c;
+    margin:15px 0;
+}
+
+#result-title{
+    color:#c9a84c;
+    margin-bottom:20px;
+}
+
+.result-message{
+    font-size:1.1rem;
+    line-height:1.8;
+    color:#f5edd8;
+    margin:30px 0;
+}
+```
